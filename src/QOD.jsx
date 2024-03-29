@@ -4,6 +4,25 @@ import { Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
 
 export default function () {
+    const questions = [{
+                type: "radiogroup",
+                name: "question1",
+                title: "What is the most common cause of lifeguard injuries?",
+                choices: [
+                    "Slip and fall accidents", "Pool chemicals", "Sunburns", "Sharks"
+                ],
+                correctAnswer: "Slip and fall accidents"
+            },
+            {
+                type: "radiogroup",
+                name: "question2",
+                title: "how much sunscreen should you apply",
+                choices: [
+                    "teaspoon", "tablespoon", "quart", "gallon"
+                ],
+                correctAnswer: "tablespoon"
+            }];
+    const nQuestion = Math.floor((Math.random() * questions.length));        
     const surveyJson = {
         title: "Lifeguard Safety",
         showCorrectAnswer: "always",
@@ -21,15 +40,7 @@ export default function () {
                 isRequired: true
             }]
         }, {
-            elements: [{
-                type: "radiogroup",
-                name: "question1",
-                title: "What is the most common cause of lifeguard injuries?",
-                choices: [
-                    "Slip and fall accidents", "Pool chemicals", "Sunburns", "Sharks"
-                ],
-                correctAnswer: "Slip and fall accidents"
-            }]
+            elements: [questions[nQuestion]]
         }]
     };
     const survey = new Model(surveyJson);
